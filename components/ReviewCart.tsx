@@ -1,4 +1,5 @@
 import CURRANCY from 'helper/currancy'
+import Image from 'next/image'
 import Link from 'next/link'
 import React from 'react'
 import { AiOutlineMinusCircle, AiOutlinePlusCircle } from 'react-icons/ai'
@@ -27,8 +28,11 @@ const ReviewCart: React.FC<PropsTypes> = ({
           key={index}
         >
           <div className='flex-1 max-w-[200px]'>
-            <img
+            <Image
+              alt={product.title}
               src={product.thumbnail}
+              width={100}
+              height={100}
               className='object-contain w-full h-full '
             />
           </div>

@@ -12,7 +12,7 @@ export const Provider: React.FC<{ children: React.ReactNode }> = ({
     setCart((curr) => {
       let counter = 0
       const already = curr.map((item) => {
-        if (item.id === product.id) {
+        if (item._id === product._id) {
           counter--
           return { ...item, quantity: item.quantity + 1 }
         }
@@ -34,12 +34,12 @@ export const Provider: React.FC<{ children: React.ReactNode }> = ({
   }
 
   const removeFromCart: IContext['removeFromCart'] = (product) => {
-    if (!cart.some((item) => item.id === product.id)) return
+    if (!cart.some((item) => item._id === product._id)) return
     setCart((curr) => {
       if (product.quantity === 1)
-        return curr.filter((item) => item.id !== product.id)
+        return curr.filter((item) => item._id !== product._id)
       return curr.map((item) => {
-        if (item.id === product.id)
+        if (item._id === product._id)
           return { ...item, quantity: item.quantity - 1 }
         return item
       })

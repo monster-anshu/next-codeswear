@@ -6,6 +6,7 @@ import { IProduct } from 'types'
 import CURRANCY from 'helper/currancy'
 import { connectOnce } from 'middleware/Mongo'
 import { ProductActions } from 'utils/product'
+import Image from 'next/image'
 
 interface Proptypes {
   products: IProduct[]
@@ -42,12 +43,15 @@ const Tshirts: NextPage<Proptypes> = ({ products }) => {
             {products.map((item, index) => (
               <div className='max-w-sm p-4 shadow-xl' key={index}>
                 <Link href={`/product/${item.slag}`}>
-                  <a className='relative block overflow-hidden rounded '>
-                    <img
-                      alt='ecommerce'
-                      className='block object-contain object-center h-64 m-auto'
-                      src={item.thumbnail}
-                    />
+                  <a className='block overflow-hidden rounded '>
+                    <div className='relative block h-64 m-auto'>
+                      <Image
+                        alt={item.title}
+                        layout='fill'
+                        className='object-contain'
+                        src={item.thumbnail}
+                      />
+                    </div>
                   </a>
                 </Link>
                 <div className='mt-4 text-center md:text-left '>
@@ -69,7 +73,7 @@ const Tshirts: NextPage<Proptypes> = ({ products }) => {
       </section>
     </div>
   ) : (
-    <>'Not Found'</>
+    <>Not Found</>
   )
 }
 

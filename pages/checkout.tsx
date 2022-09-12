@@ -6,10 +6,11 @@ import ReviewCart from 'components/ReviewCart'
 import AddressFiller from 'components/AddressFiller'
 import CURRANCY from 'helper/currancy'
 import { NextPage } from 'next'
+import Image from 'next/image'
 
 const tableCols = ['Product', 'Price', 'Quantity', 'Subtotal']
 
-const checkout: NextPage = () => {
+const Checkout: NextPage = () => {
   const { cart, addToCart, removeFromCart } = useContext(Context)
 
   const [details, setDetails] = useState<IAddress>({
@@ -75,16 +76,19 @@ const checkout: NextPage = () => {
               <tr className='border-b' key={index}>
                 <td className='flex flex-wrap items-center gap-6 px-6 py-4 text-sm font-medium text-center text-gray-900 whitespace-nowrap '>
                   <button>
-                    <img
+                    <Image
                       src='https://upload.wikimedia.org/wikipedia/commons/8/8f/Flat_cross_icon.svg'
-                      alt=''
+                      alt={item.title}
                       height={20}
                       width={20}
                     />
                   </button>
-                  <img
+                  <Image
                     src={item.thumbnail}
                     className='object-contain text-center w-14 h-14'
+                    width={100}
+                    height={100}
+                    alt={item.title}
                   />
                   {item.title}
                 </td>
@@ -136,4 +140,4 @@ const checkout: NextPage = () => {
   )
 }
 
-export default checkout
+export default Checkout

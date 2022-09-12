@@ -32,7 +32,7 @@ const Navbar: React.FC = ({}) => {
   return (
     <nav className='sticky top-0 z-10 flex flex-col items-center justify-center bg-white md:flex-row md:justify-start '>
       <div className='logo'>
-        <Image src={'/logo.png'} height={40} width={200} />
+        <Image src={'/logo.png'} height={40} width={200} alt={'Logo'} />
       </div>
       <div className='nav'>
         <ul className='flex space-x-6 font-bold'>

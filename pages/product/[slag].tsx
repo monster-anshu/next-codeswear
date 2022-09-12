@@ -7,6 +7,7 @@ import { Context } from 'context'
 import CURRANCY from 'helper/currancy'
 import { connectOnce } from 'middleware/Mongo'
 import MProduct from 'models/Product'
+import Image from 'next/image'
 interface Proptypes {
   product: IProduct | null
 }
@@ -31,7 +32,7 @@ const Product: NextPage<Proptypes> = ({ product }) => {
   const [pincode, setPincode] = useState('')
   const [service, setService] = useState<boolean>()
   const checkService = () => {
-    axios.post('/api/pincode', { pincode }).then((res) => {
+    axios.post(process.env.HOST + '/api/pincode', { pincode }).then((res) => {
       setService(res.data?.avilable)
     })
   }
@@ -50,11 +51,14 @@ const Product: NextPage<Proptypes> = ({ product }) => {
     <section className='overflow-hidden text-gray-600 body-font'>
       <div className='container px-5 py-4 mx-auto'>
         <div className='flex flex-wrap mx-auto lg:w-4/5'>
-          <img
-            alt='ecommerce'
-            className='object-contain w-full max-w-sm rounded '
-            src={product.thumbnail}
-          />
+          <div className='relative w-full max-w-sm rounded '>
+            <Image
+              alt={product.title}
+              className='object-contain'
+              src={product.thumbnail}
+              layout='fill'
+            />
+          </div>
           <div className='w-full mt-6 lg:w-1/2 lg:pl-10 lg:py-6 lg:mt-0'>
             <h2 className='text-sm tracking-widest text-gray-500 title-font'>
               {product.category}
@@ -197,7 +201,7 @@ const Product: NextPage<Proptypes> = ({ product }) => {
             </div>
             {service === false && (
               <div className='mt-3 text-sm text-red-700'>
-                Sorry, We don't Deliver to {pincode}.
+                Sorry, We dont Deliver to {pincode}.
               </div>
             )}
             {service === true && (
